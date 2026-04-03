@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet 16 Lutfiana</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html{scroll-behavior:smooth;}
+body{overflow-y:scroll;overflow-x:hidden;background:black;color:white;text-align:center}
+
+/* LOADING */
+#loading{
+position:fixed;width:100%;height:100%;
+background:black;display:flex;justify-content:center;align-items:center;
+flex-direction:column;z-index:9999;
+animation:fadeOut 2s ease forwards;animation-delay:3s;
+}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+.loader{
+width:60px;height:60px;border:5px solid white;
+border-top:5px solid hotpink;border-radius:50%;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SLIDESHOW */
+.slideshow{position:fixed;width:100%;height:100%;z-index:-1}
+.slide{
+position:absolute;width:100%;height:100%;
+background-size:cover;background-position:center;
+opacity:0;transition:opacity 1.5s ease-in-out, transform 6s ease-in-out;
+transform:scale(1);
+}
+.slide.active{opacity:1;transform:scale(1.1)}
+
+/* SECTION */
+.section{
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);
+}
+
+/* CINEMATIC TEXT */
+.cinematic span{
+opacity:0;
+display:inline-block;
+transform:translateY(40px);
+animation:rise 1s forwards;
+}
+@keyframes rise{
+to{opacity:1;transform:translateY(0)}
+}
+
+/* GLOW NAME */
+.glow-name{
+font-size:55px;font-weight:800;
+background:linear-gradient(90deg,#ff4b7d,#fff,#ff4b7d);
+background-size:200%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:shine 4s linear infinite, zoomIn 2s ease forwards;
+text-shadow:0 0 25px hotpink;
+}
+@keyframes shine{
+0%{background-position:-200%}
+100%{background-position:200%}
+}
+@keyframes zoomIn{
+from{transform:scale(0.5);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+/* BUTTON */
+button{
+padding:12px 25px;border:none;border-radius:30px;
+background:#ff4b7d;color:white;font-size:18px;
+cursor:pointer;transition:0.3s;margin-top:20px;
+}
+button:hover{background:#ff1e5a;transform:scale(1.1)}
+
+.cake{font-size:90px;animation:flicker 1s infinite alternate}
+@keyframes flicker{from{transform:scale(1)}to{transform:scale(1.05)}}
+
+/* CONFETTI */
+.confetti{
+position:fixed;width:10px;height:10px;top:-10px;
+animation:fall linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+
+/* FIREWORK */
+.firework{
+position:fixed;width:8px;height:8px;border-radius:50%;
+animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+0%{transform:scale(0);opacity:1}
+100%{transform:scale(15);opacity:0}
+}
+/* LOVE PARTICLE BACKGROUND */
+.love{
+position:fixed;
+bottom:-20px;
+font-size:18px;
+opacity:0.8;
+animation:floatUp linear forwards;
+pointer-events:none;
+z-index:0;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0) scale(1);
+opacity:0.9;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.5);
+opacity:0;
+}
+}
+.blur-wrapper{
+max-width:800px;
+padding:20px;
+line-height:1.8;
+font-size:18px;
+filter:blur(10px);
+transition:1.5s ease;
+position:relative;
+}
+
+.blur-wrapper::after{
+content:"✨ Tiup Lilin Untuk Membuka Pesan ✨";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.7);
+padding:15px 25px;
+border-radius:30px;
+color:white;
+}
+
+.blur-wrapper.open{
+filter:blur(0);
+}
+
+.blur-wrapper.open::after{
+display:none;
+}
+<div class="sparkle" style="top:20%;left:30%;"></div>
+<div class="sparkle" style="top:60%;left:70%;"></div>
+<div class="sparkle" style="top:40%;left:10%;"></div>
+  </style>
+</head>
+<script>
+
+// LOVE PARTICLE GENERATOR
+function createLove(){
+let love=document.createElement("div");
+love.classList.add("love");
+
+let emojis=["💖","💗","💕","💘","💞"];
+love.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+love.style.left=Math.random()*100+"vw";
+love.style.fontSize=(Math.random()*15+15)+"px";
+love.style.animationDuration=(Math.random()*5+5)+"s";
+
+document.body.appendChild(love);
+
+setTimeout(()=>{
+love.remove();
+},10000);
+}
+
+// spawn terus tiap 500ms
+setInterval(createLove,500);
+
+</script><body>
+
+<div id="loading">
+<div class="loading-content">
+<h2 id="loadingText">Sweet 16 Lutfiana 💖</h2>
+<div class="loader"></div>
+</div>
+  
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+</div>
+  
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sweet 16</title>
+</head>
+<body>
+
+<audio src="musik.mp3" controls></audio>
+
+</body>
+</html>
+
+</script>
+
+</body>
+</html>
+
+
+<div class="slideshow">
+<div class="slide active" style="background-image:url('foto1.jpg')"></div>
+<div class="slide" style="background-image:url('foto2.jpg')"></div>
+<div class="slide" style="background-image:url('foto3.jpg')"></div>
+<div class="slide" style="background-image:url('foto4.jpg')"></div>
+<div class="slide" style="background-image:url('foto5.jpg')"></div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+<h1 class="cinematic" id="opening"></h1>
+<div class="glow-name">LUTFIANA</div>
+<p>04 April 2010 - 04 April 2026</p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+<h1>Selamat ulang tahun yang ke-16 🎂✨</h1>
+</div>
+</div>
+
+<!-- SECTION LONG MESSAGE -->
+<div class="section">
+<h1>Untuk Lutfiana 💖</h1>
+
+  <div class="blur-wrapper" id="blurText">
+  
+<p style="max-width:800px;line-height:1.8;font-size:18px;margin-top:20px;padding:20px">
+
+Hari ini bukan cuma tentang bertambahnya usia menjadi 16 tahun.  
+Hari ini adalah tentang perjalanan, tentang tawa yang pernah hadir,  
+tentang air mata yang membuatmu semakin kuat,  
+dan tentang mimpi-mimpi besar yang sedang menunggu untuk kamu raih.  
+
+Lutfiana, kamu adalah pribadi yang istimewa.  
+Cara kamu tersenyum, cara kamu peduli,  
+dan cara kamu bertahan di setiap keadaan  
+adalah hal-hal kecil yang sebenarnya sangat luar biasa.  
+
+Di usia Sweet Sixteen ini, semoga kamu selalu diberi  
+kesehatan, kebahagiaan, dan keberanian  
+untuk mengejar semua impianmu.  
+
+Semoga langkahmu selalu dimudahkan,  
+semoga hatimu selalu dipenuhi cinta,  
+dan semoga kamu tidak pernah merasa sendirian  
+karena selalu ada doa baik yang menyertaimu.  
+
+Terima kasih sudah menjadi dirimu sendiri.  
+Terima kasih sudah membawa warna di setiap cerita.  
+
+Hari ini mungkin hanya satu hari dalam setahun,  
+tapi kamu adalah alasan kenapa hari ini terasa begitu spesial.  
+
+Selamat ulang tahun yang ke-16 🎂✨  
+Semoga tahun ini menjadi awal dari hal-hal indah  
+yang bahkan belum pernah kamu bayangkan sebelumnya. 💕
+
+<div class="long-text">
+<p>Hari ini bukan cuma tentang bertambahnya usia menjadi 16 tahun...</p>
+<p>Lutfiana, kamu adalah pribadi yang istimewa...</p>
+<p>Di usia Sweet Sixteen ini, semoga kamu selalu diberi kesehatan...</p>
+<p>Semoga langkahmu selalu dimudahkan...</p>
+<p>Terima kasih sudah menjadi dirimu sendiri...</p>
+<p>Selamat ulang tahun yang ke-16 🎂✨</p>
+</div>
+</div>
+</div> 
+
+<style>
+  /* ===== LOADING SCREEN ===== */
+#loading{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1s ease;
+}
+
+.loading-content{
+text-align:center;
+animation:fadeIn 2s ease;
+}
+
+#loadingText{
+margin-bottom:20px;
+opacity:0;
+animation:fadeText 2s forwards;
+}
+
+.loader{
+width:60px;
+height:60px;
+border:5px solid white;
+border-top:5px solid hotpink;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
+}
+
+@keyframes fadeText{
+to{opacity:1;}
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* Hilang */
+#loading.hide{
+opacity:0;
+pointer-events:none;
+}
+  .balloon{
+position:fixed;
+bottom:-100px;
+font-size:40px;
+animation:floatBalloon 10s linear infinite;
+}
+
+.balloon:nth-child(1){left:10%;}
+.balloon:nth-child(2){left:50%;animation-delay:3s;}
+.balloon:nth-child(3){left:80%;animation-delay:6s;}
+
+@keyframes floatBalloon{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+/* BLUR LOCK EFFECT */
+.blur-wrapper{
+max-width:800px;
+padding:20px;
+line-height:1.8;
+font-size:18px;
+filter:blur(10px);
+transition:1.5s ease;
+position:relative;
+}
+
+.blur-wrapper::after{
+content:"✨ Tiup Lilin Untuk Membuka Pesan ✨";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.7);
+padding:15px 25px;
+border-radius:30px;
+font-size:16px;
+color:white;
+}
+
+.blur-wrapper.open{
+filter:blur(0);
+}
+
+.blur-wrapper.open::after{
+display:none;
+} 
+.sparkle{
+position:fixed;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+  
+</style>
+  
+  
+<!-- SECTION 3 -->
+<div class="section">
+<div class="cake">🎂</div>
+<button onclick="tiupLilin()">Tiup Lilin</button>
+</div>
+
+  
+<!-- SECTION 4 -->
+<div class="section">
+<h1>Sweet Sixteen ✨</h1>
+<p><body>
+Hari ini bukan hanya tentang bertambahnya usia,
+tapi tentang bertambahnya mimpi, harapan, dan perjalanan baru. 
+  Terima kasih untuk semua doa, dukungan, 
+  dan cinta yang tak pernah berhenti.
+Semoga langkah di usia 16 ini selalu 
+  dipenuhi cahaya dan kebahagiaan 💖✨ 💕<body></p>
+</div>
+
+  
+  <h1><p><bold>Sekaa Cintaa Lutfianaa</p><h1>
+  
+<script>
+
+// CINEMATIC OPENING TEXT
+let text="Happy Sweet Sixteen 🎉";
+let opening=document.getElementById("opening");
+
+text.split("").forEach((char,i)=>{
+let span=document.createElement("span");
+span.innerText=char;
+span.style.animationDelay=(i*0.1)+"s";
+opening.appendChild(span);
+});
+
+// SLIDESHOW
+let slides=document.querySelectorAll('.slide');
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove('active');
+index=(index+1)%slides.length;
+slides[index].classList.add('active');
+},3000);
+
+// TIUP LILIN
+function tiupLilin(){
+
+document.querySelector('.cake').innerHTML="🎂✨";
+
+// CONFETTI
+for(let i=0;i<150;i++){
+let conf=document.createElement("div");
+conf.classList.add("confetti");
+conf.style.left=Math.random()*100+"vw";
+conf.style.backgroundColor="hsl("+Math.random()*360+",100%,50%)";
+conf.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(conf);
+setTimeout(()=>{conf.remove();},5000);
+}
+
+// FIREWORK
+for(let i=0;i<20;i++){
+let fw=document.createElement("div");
+fw.classList.add("firework");
+fw.style.left=Math.random()*100+"vw";
+fw.style.top=Math.random()*100+"vh";
+fw.style.backgroundColor="hsl("+Math.random()*360+",100%,50%)";
+document.body.appendChild(fw);
+setTimeout(()=>{fw.remove();},1000);
+}
+
+// 🔥 INI DITAMBAHKAN DI SINI
+document.getElementById("blurText").classList.add("open");
+
+document.getElementById("blurText").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+ // LOADING HILANG SETELAH 3 DETIK
+window.addEventListener("load", function(){
+setTimeout(function(){
+document.getElementById("loading").classList.add("hide");
+},3000);
+});
+
+</script>
+
+</body>
+</html>
